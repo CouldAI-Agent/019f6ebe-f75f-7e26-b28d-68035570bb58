@@ -1,67 +1,47 @@
 import 'package:flutter/material.dart';
+import 'screens/splash_screen.dart';
+import 'screens/auth_screen.dart';
+import 'screens/onboarding_screen.dart';
+import 'screens/main_dashboard.dart';
+import 'screens/event_center_screen.dart';
+import 'screens/secondary_screens.dart';
+import 'screens/pvp_setup_screen.dart';
+import 'screens/chess_game_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ChessKingApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ChessKingApp extends StatelessWidget {
+  const ChessKingApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Chess King',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: const Color(0xFF121212), // Dark theme
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(color: Colors.white),
+          bodyLarge: TextStyle(color: Colors.white),
+        ),
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+        '/': (context) => const SplashScreen(),
+        '/auth': (context) => const AuthScreen(),
+        '/onboarding': (context) => const OnboardingScreen(),
+        '/dashboard': (context) => const MainDashboard(),
+        '/events': (context) => const EventCenterScreen(),
+        '/tasks': (context) => const TaskScreen(),
+        '/rank': (context) => const RankScreen(),
+        '/diamonds': (context) => const DiamondScreen(),
+        '/level': (context) => const LevelScreen(),
+        '/pvp': (context) => const PvpSetupScreen(),
+        '/chess': (context) => const ChessGameScreen(),
       },
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
     );
   }
 }
